@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #faf8ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #776e65;
+}
+
+.container {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.score-container {
+    background-color: #bbada0;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 1.5em;
+    color: white;
+}
+
+#new-game-button, #try-again-button {
+    background-color: #8f7a66;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+}
+
+#new-game-button:hover, #try-again-button:hover {
+    background-color: #9f8b77;
+}
+
+
+.grid-container {
+    width: 460px; /* (100px * 4) + (12px * 5) */
+    height: 460px;
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: 12px; /* Espaçamento externo */
+    position: relative;
+    box-sizing: border-box;
+    display: grid; /* Usado para as células de fundo */
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 12px; /* Espaçamento entre células */
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    background-color: #cdc1b4;
+    border-radius: 3px;
+}
+
+.tile-container {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 0;
+    bottom: 0;
+    padding: 12px; /* Para alinhar com o espaçamento do grid-container */
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    border-radius: 3px;
+    background-color: #eee4da; /* Default tile color */
+    position: absolute; /* Important for positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em; /* Default font size */
+    font-weight: bold;
+    color: #776e65; /* Default text color */
+    box-sizing: border-box;
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out, top 0.1s ease-in-out, left 0.1s ease-in-out; /* Smooth transitions */
+    /* Animation for appearing */
+    animation: appear 0.2s ease-in-out;
+}
+
+@keyframes appear {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+
+/* Tile Colors - Add more as needed */
+.tile[data-value="2"]   { background-color: #eee4da; color: #776e65; }
+.tile[data-value="4"]   { background-color: #ede0c8; color: #776e65; }
+.tile[data-value="8"]   { background-color: #f2b179; color: #f9f6f2; }
+.tile[data-value="16"]  { background-color: #f59563; color: #f9f6f2; }
+.tile[data-value="32"]  { background-color: #f67c5f; color: #f9f6f2; }
+.tile[data-value="64"]  { background-color: #f65e3b; color: #f9f6f2; }
+.tile[data-value="128"] { background-color: #edcf72; color: #f9f6f2; font-size: 2em; }
+.tile[data-value="256"] { background-color: #edcc61; color: #f9f6f2; font-size: 2em; }
+.tile[data-value="512"] { background-color: #edc850; color: #f9f6f2; font-size: 2em; }
+.tile[data-value="1024"]{ background-color: #edc53f; color: #f9f6f2; font-size: 1.5em; }
+.tile[data-value="2048"]{ background-color: #edc22e; color: #f9f6f2; font-size: 1.5em; }
+/* Add styles for higher values if you like */
+.tile[data-value="4096"]{ background-color: #3c3a32; color: #f9f6f2; font-size: 1.5em; }
+
+
+.game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(238, 228, 218, 0.73); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px; /* Match grid container */
+    z-index: 100;
+    animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.game-over-overlay p {
+    font-size: 3em;
+    font-weight: bold;
+    color: #776e65;
+    margin-bottom: 20px;
+}

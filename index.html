@@ -6,6 +6,23 @@
   <title>Jogo 2048 - Jogadores</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
     .help-icon-button {
       background-color: #8f7a66;
       color: white;
@@ -47,6 +64,22 @@
       color: transparent !important;
       text-shadow: none !important;
     }
+
+    @media (max-width: 480px) {
+      .grid-container {
+        width: 100% !important;
+        height: auto !important;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        aspect-ratio: 1 / 1;
+      }
+
+      .grid-cell, .tile {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -55,7 +88,7 @@
       <h1>2048</h1>
       <div class="score-container">Score: <span id="score">0</span></div>
     </div>
-    <div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
       <button id="new-game-button">Novo Jogo</button>
       <button id="help-icon" class="help-icon-button">Ajuda</button>
     </div>
@@ -75,7 +108,7 @@
 
   <!-- Modal -->
   <div id="help-modal" class="modal">
-    <img src="img/ajuda-2048.png" alt="Imagem de Ajuda">
+    <img src="ajuda.png" alt="Imagem de Ajuda">
   </div>
 
   <script src="script.js"></script>
